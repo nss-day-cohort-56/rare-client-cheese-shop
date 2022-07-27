@@ -5,6 +5,7 @@ import { MyPosts } from "../components/posts/MyPosts"
 import { PostDetail } from "../components/posts/PostDetail"
 import { Posts } from "../components/posts/Posts"
 import { Authorized } from "./Authorized"
+import { CategoryList } from "../components/categories/Categories"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -21,6 +22,8 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route path=":postId" element={<PostDetail />} />
         </Route>
 
+
+        <Route path="categories" element={ <CategoryList /> } />
       </Route>
     </Routes>
   </>
