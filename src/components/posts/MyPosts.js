@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 export const MyPosts = () => {
     /*declared an initial state of posts and created a setPosts function which will change the state */
     const [posts, setPosts] = useState([])
-    const navigate = useNavigate()
+
     useEffect(() => {
         const rareUser = localStorage.getItem("auth_token")
         const rareUserObject = JSON.parse(rareUser)
@@ -22,7 +22,7 @@ export const MyPosts = () => {
         <div className="post_container">
             <h2>container test</h2>
             {posts.reverse().map((post) => {
-                let user = post.user_id  
+                let userName = post?.user?.username  
                 let category = post.category_id
                 let title = post.title
                 let pubDate = post.publication_date
@@ -32,7 +32,7 @@ export const MyPosts = () => {
 
                 return <section className="postBox" key={post.id}>
                     <h3>All Posts Test</h3>
-                    <div value={post.id}>User: {user}</div>
+                    <div value={post.id}>User: {userName}</div>
                     <div value={post.id}>Category: {category}</div>
                     <div value={post.id}>Title: {title}</div>
                     <div value={post.id}>Date: {pubDate}</div>
