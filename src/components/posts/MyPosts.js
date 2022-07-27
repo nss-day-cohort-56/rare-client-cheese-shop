@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { getPostsByUserId } from "./PostManager"
+import { getPostsByUserId, deletePost } from "./PostManager"
+import { useNavigate } from "react-router-dom"
 
 export const MyPosts = () => {
     /*declared an initial state of posts and created a setPosts function which will change the state */
     const [posts, setPosts] = useState([])
-    
+    const navigate = useNavigate()
     useEffect(() => {
         const rareUser = localStorage.getItem("auth_token")
         const rareUserObject = JSON.parse(rareUser)
@@ -18,7 +19,7 @@ export const MyPosts = () => {
     return (
         <>
         <h2>Post Title Test</h2>
-        <div className="Post container">
+        <div className="post_container">
             <h2>container test</h2>
             {posts.reverse().map((post) => {
                 let user = post.user_id  
@@ -38,6 +39,13 @@ export const MyPosts = () => {
                     <img src={image} alt = "postImage" className="postImage"/>
                     <div value={post.id}>Content: {content}</div>
                     <div value={post.id}>Approved: {approved}</div>
+                    <div className="button_container"> 
+                        <button className="button" onClick={() => {
+                            deletePost(post.id)
+                                .then(() => window.location.reload()) 
+                            }}>delete
+                        </button>
+                    </div>
                 </section>
             })}
 

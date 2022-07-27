@@ -13,17 +13,17 @@ export const Posts = () => {
 
     return (
         <>
-            <h2>Post Title Test</h2>
-            <div className="Post container">
-                <h2>container test</h2>
-                {posts.reverse().map((post) => {
-                    let user = post?.user?.username
-                    let category = post.category_id
-                    let title = post.title
-                    let pubDate = post.publication_date
-                    let image = post.image_url
-                    let content = post.content
-                    let approved = post.approved
+        <h2>Post Title Test</h2>
+        <div className="post_container">
+            <h2>container test</h2>
+            {posts.reverse().map((post) => {
+                let user = post.user_id  
+                let category = post.category_id
+                let title = post.title
+                let pubDate = post.publication_date
+                let image = post.image_url
+                let content = post.content
+                let approved = post.approved
 
                     return <section className="postBox" key={post.id}>
                         <h3>All Posts Test</h3>
