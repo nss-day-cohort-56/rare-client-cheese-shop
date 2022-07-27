@@ -9,7 +9,7 @@ export const Posts = () => {
 
     useEffect(() => {
         getPosts().then(postsData => setPosts(postsData))
-    })
+    }, [])
 
     return (
         <>
