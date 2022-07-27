@@ -25,19 +25,22 @@ export const Posts = () => {
                 let content = post.content
                 let approved = post.approved
 
-                return <section className="postBox" key={post.id}>
-                    <h3>All Posts Test</h3>
-                    <div value={post.id}>User: {user}</div>
-                    <div value={post.id}>Category: {category}</div>
-                    <div value={post.id}>Title: {title}</div>
-                    <div value={post.id}>Date: {pubDate}</div>
-                    <img src={image} alt = "postImage" className="postImage"/>
-                    <div value={post.id}>Content: {content}</div>
-                    <div value={post.id}>Approved: {approved}</div>
-                </section>
-            })}
+                    return <section className="postBox" key={post.id}>
+                        <h3>All Posts Test</h3>
+                        <div value={post.id}>User: {user}</div>
+                        <div value={post.id}>Category: {category}</div>
+                        {/* added link to post details */}
+                        <Link to={`/posts/${post.id}`}>
+                            <div value={post.id}>Title: {title}</div>
+                        </Link>
+                        <div value={post.id}>Date: {pubDate}</div>
+                        <img src={image} alt="postImage" className="postImage" />
+                        <div value={post.id}>Content: {content}</div>
+                        <div value={post.id}>Approved: {approved}</div>
+                    </section>
+                })}
 
-        </div>
+            </div>
         </>
     )
 
