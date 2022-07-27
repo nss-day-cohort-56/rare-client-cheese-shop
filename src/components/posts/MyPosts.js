@@ -1,15 +1,20 @@
-import { useEffect, useImperativeHandle, useState } from "react"
-import { Route, Routes } from "react-router-dom"
-import { Link, useNavigate } from "react-router-dom"
-import { getPosts } from "./PostManager"
+import { useEffect, useState } from "react"
+import { getPostsByUserId, deletePost } from "./PostManager"
+import { useNavigate } from "react-router-dom"
 
-export const Posts = () => {
-    // const navigate = useNavigate()
+export const MyPosts = () => {
+    /*declared an initial state of posts and created a setPosts function which will change the state */
     const [posts, setPosts] = useState([])
-
+    const navigate = useNavigate()
     useEffect(() => {
-        getPosts().then(postsData => setPosts(postsData))
+        const rareUser = localStorage.getItem("auth_token")
+        const rareUserObject = JSON.parse(rareUser)
+        getPostsByUserId(rareUserObject).then(postsData => setPosts(postsData))
     }, [])
+
+    
+
+    
 
     return (
         <>
@@ -34,11 +39,17 @@ export const Posts = () => {
                     <img src={image} alt = "postImage" className="postImage"/>
                     <div value={post.id}>Content: {content}</div>
                     <div value={post.id}>Approved: {approved}</div>
+                    <div className="button_container"> 
+                        <button className="button" onClick={() => {
+                            deletePost(post.id)
+                                .then(() => window.location.reload()) 
+                            }}>delete
+                        </button>
+                    </div>
                 </section>
             })}
 
         </div>
         </>
     )
-
 }
