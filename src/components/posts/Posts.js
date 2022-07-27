@@ -1,6 +1,5 @@
-import { useEffect, useImperativeHandle, useState } from "react"
-import { Route, Routes } from "react-router-dom"
-import { Link, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { getPosts } from "./PostManager"
 
 export const Posts = () => {
@@ -17,7 +16,7 @@ export const Posts = () => {
         <div className="post_container">
             <h2>container test</h2>
             {posts.reverse().map((post) => {
-                let user = post.user_id  
+                let userName = post?.user?.username  
                 let category = post.category_id
                 let title = post.title
                 let pubDate = post.publication_date
@@ -27,7 +26,7 @@ export const Posts = () => {
 
                     return <section className="postBox" key={post.id}>
                         <h3>All Posts Test</h3>
-                        <div value={post.id}>User: {user}</div>
+                        <div value={post.id}>User: {userName}</div>
                         <div value={post.id}>Category: {category}</div>
                         {/* added link to post details */}
                         <Link to={`/posts/${post.id}`}>

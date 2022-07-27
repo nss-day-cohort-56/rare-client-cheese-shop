@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 export const MyPosts = () => {
     /*declared an initial state of posts and created a setPosts function which will change the state */
     const [posts, setPosts] = useState([])
-    const navigate = useNavigate()
+
     useEffect(() => {
         const rareUser = localStorage.getItem("auth_token")
         const rareUserObject = JSON.parse(rareUser)
