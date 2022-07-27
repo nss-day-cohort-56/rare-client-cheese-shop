@@ -9,7 +9,7 @@ export const MyPosts = () => {
         const rareUser = localStorage.getItem("auth_token")
         const rareUserObject = JSON.parse(rareUser)
         getPostsByUserId(rareUserObject).then(postsData => setPosts(postsData))
-    })
+    }, [])
 
     
 
