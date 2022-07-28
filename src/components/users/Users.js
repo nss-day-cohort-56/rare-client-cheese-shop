@@ -2,6 +2,7 @@ import { getAllUsers } from "./UserManager"
 import { useState } from "react"
 import { useEffect } from "react"
 import "./Users.css"
+import { Link } from "react-router-dom"
 
 export const Users = () => {
     // const navigate = useNavigate()
@@ -30,22 +31,18 @@ export const Users = () => {
                     let userName = user.username
                     let firstName = user.first_name
                     let lastName = user.last_name
-                    let email = user.email
-                    let bio = user.bio
-                    let joinDate = user.created_on
-                    let profileImg = user.profile_image_url
                     let profileType = staff(user)
 
                     return <section className="userBox" key={user.id}>
                         <div className="user" >
 
                         <div value={user.id}>Name: {firstName} {lastName}</div>
-                        <img src={profileImg} alt="userImage" className="userImage" />
                         <div value={user.id}>Display Name: {userName}</div>
-                        <div value={user.id}>Email: {email}</div>
                         <div value={user.id}>Profile Type: {profileType}</div>
-                        <div value={user.id}>Date Joined: {Date(joinDate)}</div>
                         </div>
+                        <Link to={`/users/${user.id}`}>
+                            <div value={user.id}>See Details</div>
+                        </Link>
                     </section>
                 })}
 

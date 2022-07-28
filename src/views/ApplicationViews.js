@@ -10,6 +10,7 @@ import { Authorized } from "./Authorized"
 import { CategoryList } from "../components/categories/Categories"
 import { Users } from "../components/users/Users";
 import { CreateTag } from "../components/tags/CreateTag"
+import { UserDetail } from "../components/users/UserDetail"
 
 
 export const ApplicationViews = ({ is_staff, token, setToken }) => {
@@ -37,7 +38,10 @@ export const ApplicationViews = ({ is_staff, token, setToken }) => {
         <Route path="/newPost" element={<NewPost />} />
         {
           is_staff === 1
-            ? <Route path="/users" element={<Users />} />
+            ? <Route path="/users">
+                <Route index element={<Users />} />
+                <Route path=":userId" element={<UserDetail />}/>
+                </Route>
             : <Route path="/users" element={<Navigate to="/posts" replace />} />
         }
       </Route>
