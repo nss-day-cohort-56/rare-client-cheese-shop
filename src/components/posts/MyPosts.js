@@ -11,11 +11,6 @@ export const MyPosts = () => {
         const rareUserObject = JSON.parse(rareUser)
         getPostsByUserId(rareUserObject).then(postsData => setPosts(postsData))
     }, [])
-
-    
-
-    
-
     return (
         <>
         <h2>Post Title Test</h2>

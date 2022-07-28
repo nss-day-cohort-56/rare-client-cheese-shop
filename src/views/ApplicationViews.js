@@ -32,6 +32,7 @@ export const ApplicationViews = ({ token, setToken }) => {
 
 
         <Route path="/newPost" element={<NewPost/>} />
+        <Route path="/newPost/:postId" element={<NewPost/>} />
         <Route path="categories" element={ <CategoryList /> } />
         <Route path="categories" element={<CategoryList />} />
       </Route>
