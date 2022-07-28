@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getPostById } from "../posts/PostManager"
 import { saveComment } from "./CommentManager"
 
 export const CommentForm = ({postId}) => {
@@ -10,12 +9,6 @@ export const CommentForm = ({postId}) => {
         content: ""
     })
 
-
-    // useEffect(() => {
-    //     getPostById(postId)
-    //         .then(setComment)
-    // }, [postId])
-    
     /*assigning useNavigate to a new variable*/
     const navigate = useNavigate()
 
@@ -25,11 +18,13 @@ export const CommentForm = ({postId}) => {
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
+        const current = new Date()
         //Creating an object to be saved to the API
         const commentToSendToAPI = {
             author_id: rareUserObject,
             content: comment.content,
-            post_id: postId
+            post_id: postId,
+            publication_date: current.toLocaleString()
         }
 
         saveComment(commentToSendToAPI)

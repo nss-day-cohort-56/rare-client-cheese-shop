@@ -24,7 +24,7 @@ export const PostDetail = () => {
             <div className="post__pub__date">Publication Date: {post.publication_date}</div>
             <div className="post__author__name">Author's Username: {post?.user?.username}</div>
 
-            <button onClick={() => {
+            <button className="button" onClick={() => {
                 navigate(`/posts`)
             }}>Back To Posts</button>
             

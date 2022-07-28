@@ -1,12 +1,14 @@
-import { Route, Routes, useParams } from "react-router-dom"
+import { Route, Routes} from "react-router-dom"
 import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
 import { MyPosts } from "../components/posts/MyPosts"
+import { NewPost } from "../components/posts/NewPost"
 import { PostDetail } from "../components/posts/PostDetail"
 import { Posts } from "../components/posts/Posts"
+import { Tags } from "../components/tags/Tags"
 import { Authorized } from "./Authorized"
 import { CategoryList } from "../components/categories/Categories"
-import { CommentForm } from "../components/comments/CommentForm"
+import { CreateTag } from "../components/tags/CreateTag"
 
 export const ApplicationViews = ({ token, setToken }) => {
 
@@ -25,8 +27,15 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route index element={<Posts />} />
           <Route path=":postId" element={<PostDetail />} />
         </Route>
+        {/* added tags route */}
+        <Route path="/tags">
+          <Route index element={<Tags />} />
+          <Route path="create" element={<CreateTag />} />
+        </Route>
 
 
+        <Route path="/newPost" element={<NewPost/>} />
+        <Route path="categories" element={ <CategoryList /> } />
         <Route path="categories" element={<CategoryList />} />
       </Route>
     </Routes>
