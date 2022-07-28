@@ -3,6 +3,8 @@
     flex-direction: row;
     width: fit-content;
     text-align: center;
+    margin: .5em;
+    flex-wrap: wrap;
 }
 
 .tag {
@@ -16,8 +18,14 @@
     transition: 0.3s;
     border-radius: 5px; 
     font-size: 200%;
+    display: flex;
+    flex-direction: column;
 }
 
 .tagTitle {
+    margin-left: 1em;
+}
+
+.button {
     margin-left: 1em;
 }
