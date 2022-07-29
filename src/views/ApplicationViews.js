@@ -34,6 +34,14 @@ export const ApplicationViews = ({ is_staff, token, setToken }) => {
           <Route index element={<Tags />} />
           <Route path="create" element={<CreateTag />} />
         </Route>
+
+
+
+        <Route path="/newPost" element={<NewPost/>} />
+        <Route path="/newPost/:postId" element={<NewPost/>} />
+        <Route path="categories" element={ <CategoryList /> } />
+        <Route path="categories" element={<CategoryList />} />
+
         <Route path="/categories" element={<CategoryList />} />
         <Route path="/newPost" element={<NewPost />} />
         {
@@ -44,6 +52,7 @@ export const ApplicationViews = ({ is_staff, token, setToken }) => {
                 </Route>
             : <Route path="/users" element={<Navigate to="/posts" replace />} />
         }
+
       </Route>
     </Routes>
   </>
