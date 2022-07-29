@@ -46,3 +46,20 @@ export const addPost = (postObject, tagNumberSet) => {
             
         })
 }
+export const updatePostObj = (post) => {
+    return fetch(`http://localhost:8088/posts/${post.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(post)
+    })
+};
+
+export const getUserById = (id) => {
+    return fetch(`http://localhost:8088/users/${id}`)
+    .then(res => res.json())
+}
+
+
+

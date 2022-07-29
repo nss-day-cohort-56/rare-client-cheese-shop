@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
 import { MyPosts } from "../components/posts/MyPosts"
@@ -8,9 +9,15 @@ import { Posts } from "../components/posts/Posts"
 import { Tags } from "../components/tags/Tags"
 import { Authorized } from "./Authorized"
 import { CategoryList } from "../components/categories/Categories"
+import { Users } from "../components/users/Users";
 import { CreateTag } from "../components/tags/CreateTag"
+import { UserDetail } from "../components/users/UserDetail"
 
-export const ApplicationViews = ({ token, setToken }) => {
+
+export const ApplicationViews = ({ is_staff, token, setToken }) => {
+
+
+
   return <>
     <Routes>
       <Route path="/login" element={<Login setToken={setToken} />} />
@@ -31,10 +38,25 @@ export const ApplicationViews = ({ token, setToken }) => {
         </Route>
 
 
-        <Route path="/newPost" element={<NewPost/>} />
-        <Route path="categories" element={ <CategoryList /> } />
+
+        <Route path="/newPost" element={<NewPost />} />
+        <Route path="/newPost/:postId" element={<NewPost />} />
         <Route path="categories" element={<CategoryList />} />
+        <Route path="categories" element={<CategoryList />} />
+
+        <Route path="/categories" element={<CategoryList />} />
+        <Route path="/newPost" element={<NewPost />} />
+        {
+          is_staff === 1
+            ? <Route path="/users">
+              <Route index element={<Users />} />
+              <Route path=":userId" element={<UserDetail />} />
+            </Route>
+            : <Route path="/users" element={<Navigate to="/posts" replace />} />
+        }
+
       </Route>
     </Routes>
   </>
+
 }

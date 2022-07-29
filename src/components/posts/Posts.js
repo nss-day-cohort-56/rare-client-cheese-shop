@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { getPosts } from "./PostManager"
 
 export const Posts = () => {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
@@ -36,7 +36,14 @@ export const Posts = () => {
                         <img src={image} alt="postImage" className="postImage" />
                         <div value={post.id}>Content: {content}</div>
                         <div value={post.id}>Approved: {approved}</div>
+                        <div className="button_container">
+                            <button id={post.id} onClick= {
+                                (e) => navigate(`/newPost/${e.target.id}`)
+                            }>Edit</button>
+                        
+                    </div>
                     </section>
+                    
                 })}
 
             </div>

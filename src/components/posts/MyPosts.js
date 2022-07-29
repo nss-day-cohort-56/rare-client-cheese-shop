@@ -13,7 +13,7 @@ export const MyPosts = () => {
     }, [])
 
     
-
+const navigate = useNavigate()
     
 
     return (
@@ -40,6 +40,9 @@ export const MyPosts = () => {
                     <div value={post.id}>Content: {content}</div>
                     <div value={post.id}>Approved: {approved}</div>
                     <div className="button_container"> 
+                        <button className="button" onClick={() => navigate("/comment")}>
+                            Add Comment
+                        </button>
                         <button className="button" onClick={() => {
                             deletePost(post.id)
                                 .then(() => window.location.reload()) 

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { getAllPostTags, getAllTags } from "../tags/TagManager"
 import { addPost, getPostById } from "./PostManager"
+import { CommentForm } from "../comments/CommentForm"
+import { getPostById } from "./PostManager"
 //allows user to see details of an individual post and navigate back to posts
 export const PostDetail = () => {
     const [post, setPost] = useState([])
@@ -42,6 +44,10 @@ export const PostDetail = () => {
     }
 
     return (
+
+
+    return (
+        <>
         <section className="post">
             <h3 className="post__name">Title: {post.title}</h3>
             <div className="post__image"><img src={post.image_url} alt="postImage" /></div>
@@ -93,6 +99,9 @@ export const PostDetail = () => {
             <button className="button" onClick={() => {
                 navigate(`/posts`)
             }}>Back To Posts</button>
+            
         </section>
+        {<CommentForm postId={postId} />}
+        </>
     )
 }
