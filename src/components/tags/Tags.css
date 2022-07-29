@@ -29,3 +29,8 @@
 .button {
     margin-left: 1em;
 }
+
+.checkedTags {
+    display: flex;
+    flex-direction: column;
+}

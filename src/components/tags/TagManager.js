@@ -3,6 +3,11 @@ export const getAllTags = () => {
         .then(res => res.json())
 };
 
+export const getAllPostTags = () => {
+    return fetch("http://localhost:8088/postTags")
+        .then(res => res.json())
+};
+
 export const addTag = (tag) => {
     return fetch(`http://localhost:8088/tags`, {
         method: "POST",
@@ -19,3 +24,13 @@ export const deleteTag = (tagObjectId) => {
     })
         
 }
+
+// export const updateTag = (tag) => {
+//     return fetch(`http://localhost:8088/tags/${tag.id}`, {
+//         method: "PUT",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(tag)
+//     })
+// }
