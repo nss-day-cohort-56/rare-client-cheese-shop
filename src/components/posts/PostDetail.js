@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { CommentForm } from "../comments/CommentForm"
+import { CommentList } from "../comments/CommentList"
 import { getPostById } from "./PostManager"
 //allows user to see details of an individual post and navigate back to posts
 export const PostDetail = () => {
@@ -30,6 +31,7 @@ export const PostDetail = () => {
             
         </section>
         {<CommentForm postId={postId} />}
+        {<CommentList postId={postId} />}
         </>
     )
 }
