@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
 import { MyPosts } from "../components/posts/MyPosts"
@@ -14,6 +15,7 @@ import { UserDetail } from "../components/users/UserDetail"
 
 
 export const ApplicationViews = ({ is_staff, token, setToken }) => {
+
 
 
   return <>
@@ -37,9 +39,9 @@ export const ApplicationViews = ({ is_staff, token, setToken }) => {
 
 
 
-        <Route path="/newPost" element={<NewPost/>} />
-        <Route path="/newPost/:postId" element={<NewPost/>} />
-        <Route path="categories" element={ <CategoryList /> } />
+        <Route path="/newPost" element={<NewPost />} />
+        <Route path="/newPost/:postId" element={<NewPost />} />
+        <Route path="categories" element={<CategoryList />} />
         <Route path="categories" element={<CategoryList />} />
 
         <Route path="/categories" element={<CategoryList />} />
@@ -47,9 +49,9 @@ export const ApplicationViews = ({ is_staff, token, setToken }) => {
         {
           is_staff === 1
             ? <Route path="/users">
-                <Route index element={<Users />} />
-                <Route path=":userId" element={<UserDetail />}/>
-                </Route>
+              <Route index element={<Users />} />
+              <Route path=":userId" element={<UserDetail />} />
+            </Route>
             : <Route path="/users" element={<Navigate to="/posts" replace />} />
         }
 
@@ -58,4 +60,3 @@ export const ApplicationViews = ({ is_staff, token, setToken }) => {
   </>
 
 }
-

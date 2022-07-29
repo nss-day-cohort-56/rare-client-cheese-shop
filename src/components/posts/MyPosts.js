@@ -11,6 +11,11 @@ export const MyPosts = () => {
         const rareUserObject = JSON.parse(rareUser)
         getPostsByUserId(rareUserObject).then(postsData => setPosts(postsData))
     }, [])
+
+    
+const navigate = useNavigate()
+    
+
     return (
         <>
         <h2>Post Title Test</h2>
@@ -35,6 +40,9 @@ export const MyPosts = () => {
                     <div value={post.id}>Content: {content}</div>
                     <div value={post.id}>Approved: {approved}</div>
                     <div className="button_container"> 
+                        <button className="button" onClick={() => navigate("/comment")}>
+                            Add Comment
+                        </button>
                         <button className="button" onClick={() => {
                             deletePost(post.id)
                                 .then(() => window.location.reload()) 
