@@ -18,7 +18,7 @@ export const Tags = () => {
         <h2 className="tagTitle">Tag Manager</h2>
         <section className="tag_container">
             {
-                tags.map((t) => {
+                tags?.map((t) => {
                     return <div className="tag" key={t.id}>
                         {t.label}
                         <button className="" onClick={() => {
