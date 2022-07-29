@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getCategories } from "../categories/CategoryManager"
+import { getPostById, updatePostObj } from "./PostManager"
 
 
 export const NewPost = () => {
+    let {postId} = useParams()
     const [categories, setCategories] = useState([])
     const loadUserCategories = () => {
         getCategories()
-            .then((categoryArr) => {
-                setCategories(categoryArr)
+        .then((categoryArr) => {
+            setCategories(categoryArr)
             })
     }
+    
     useEffect(
         () => {
             loadUserCategories()
@@ -20,9 +23,28 @@ export const NewPost = () => {
     const [post, updatePost] = useState({
         title: "",
         content: "",
-        category: "",
+        category_id: "",
         image_url: ""
     })
+
+    useEffect(
+        () => {
+            if (postId != undefined ) {
+                getPostById(postId)
+                .then(res => updatePost(res))
+            } else {
+                updatePost(
+                    {
+                        title: "",
+                        content: "",
+                        category_id: "",
+                        image_url: ""
+                    }
+                )
+            }
+        },
+        [postId]
+    )
 
     const navigate = useNavigate()
     const rareUser = localStorage.getItem("auth_token")
@@ -35,7 +57,7 @@ export const NewPost = () => {
             user_id: rareUserObject,
             title: post.title,
             content: post.content,
-            category_id: post.category,
+            category_id: post.category_id,
             image_url: post.image_url,
             publication_date: new Date(),
             approved: 1
@@ -49,6 +71,22 @@ export const NewPost = () => {
 
         })
             .then(response => response.json())
+            .then(() => {
+                navigate("/posts")
+            })
+    }
+
+    const handleUpdateButtonClick = (event) => {
+        event.preventDefault()
+
+        const postToSendToAPI = {
+            id: post.id,
+            title: post.title,
+            content: post.content,
+            category_id: post.category_id,
+            image_url: post.image_url
+        }
+        updatePostObj(postToSendToAPI)
             .then(() => {
                 navigate("/posts")
             })
@@ -107,16 +145,16 @@ export const NewPost = () => {
                     <select
                         required autoFocus
                         className="formControl_group_3"
-                        value={post.category}
+                        value={post.category_id}
                         onChange={
                             (e) => {
                                 const copy = { ...post }
-                                copy.category = e.target.value
+                                copy.category_id = e.target.value
                                 updatePost(copy)
                             }
                         } >
                         <option>--Select a Category--</option>
-                        {categories.map((category) => <option>{category.label}</option>)}
+                        {categories.map((category) => <option value={category.id}>{category.label}</option>)}
                     </select>
                 </div>
             </fieldset>
@@ -140,13 +178,21 @@ export const NewPost = () => {
                         } />
                 </div>
                 <div className="newPost__button_container">
+                    {postId != undefined ? <button id="submit_new_post"
+                        onClick={
+                            (clickEvent) => handleUpdateButtonClick(clickEvent)
+                        }
+                    >
+                        update Post
+                    </button>
+                    :
                     <button id="submit_new_post"
                         onClick={
                             (clickEvent) => handleSaveButtonClick(clickEvent)
                         }
                     >
                         Submit Post
-                    </button>
+                    </button>}
                     <div className="abortPost__button_container">
                         <button id="abort_post" onClick={() => navigate("/posts")}>
                             Back to Posts
